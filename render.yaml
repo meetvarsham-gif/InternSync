@@ -1,6 +1,8 @@
 services:
+  # Note: renaming this only changes the dashboard label, not the live
+  # .onrender.com subdomain (fixed at creation: internsync-api.onrender.com).
   - type: web
-    name: internsync-api
+    name: teamsync-api
     runtime: python
     plan: free
     rootDir: backend
