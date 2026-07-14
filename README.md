@@ -1,6 +1,11 @@
-# InternSync — Internship Task Tracker
+# TeamSync — Team Task Tracker
 
-A production-style full-stack CRUD application for tracking internship tasks: dashboard KPIs, dual-view task management (table/card), Kanban drag-and-drop, and an automated activity audit trail.
+A production-style full-stack CRUD application for tracking team tasks: dashboard KPIs, dual-view task management (table/card), Kanban drag-and-drop, and an automated activity audit trail.
+
+This is the MVP for a role-based team task platform — the long-term idea is managers creating and assigning tasks/projects to team members, with members logging in to see only what's assigned to them. The current build validates the core task/dashboard/Kanban workflow; authentication, authorization (manager vs. member roles), and a proper user/team data model are the next phase.
+
+**Live app:** https://intern-sync-eight.vercel.app
+**API docs:** https://internsync-api.onrender.com/docs
 
 ## Stack
 
@@ -38,7 +43,7 @@ Render's free web services don't support persistent disks, so SQLite isn't viabl
 
 **Backend → Render.** This repo includes a `render.yaml` blueprint: on Render, choose "New > Blueprint", point it at this GitHub repo. Render provisions a free web service; it will prompt you for two env vars since they're marked `sync: false`:
 - `DATABASE_URL` — the Neon connection string from above
-- `ALLOWED_ORIGINS` — your Vercel frontend URL (comma-separated if more than one), e.g. `https://internsync.vercel.app`
+- `ALLOWED_ORIGINS` — your Vercel frontend URL (comma-separated if more than one), e.g. `https://intern-sync-eight.vercel.app`
 
 **Frontend → Vercel.** Import this repo as a Vercel project with root directory `frontend` (framework preset: Vite). Set the `VITE_API_BASE_URL` env var to your Render backend's URL plus `/api`, e.g. `https://internsync-api.onrender.com/api`, then deploy. `vercel.json` handles SPA client-side routing rewrites.
 
