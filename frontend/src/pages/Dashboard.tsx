@@ -37,7 +37,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <Header title="Dashboard" subtitle="Your internship workload at a glance" />
+      <Header title="Dashboard" subtitle="Your team's workload at a glance" />
       <div className="p-4 md:p-8 space-y-6">
         {loading || !stats ? (
           <>

@@ -42,9 +42,9 @@ export default function Sidebar() {
     <aside className="hidden md:flex md:flex-col w-64 shrink-0 bg-white border-r border-slate-200 h-screen sticky top-0">
       <div className="h-16 flex items-center gap-2 px-6 border-b border-slate-200">
         <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm">
-          IS
+          TS
         </div>
-        <span className="text-lg font-semibold text-slate-900">InternSync</span>
+        <span className="text-lg font-semibold text-slate-900">TeamSync</span>
       </div>
       <nav className="flex-1 px-3 py-4 space-y-1">
         {NAV_ITEMS.map((item) => (
@@ -66,7 +66,7 @@ export default function Sidebar() {
         ))}
       </nav>
       <div className="px-6 py-4 border-t border-slate-200 text-xs text-slate-500">
-        InternSync v1.0 — Task Tracker
+        TeamSync v1.0 — Team Task Tracker
       </div>
     </aside>
   );

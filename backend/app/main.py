@@ -1,4 +1,4 @@
-"""InternSync FastAPI application entry point."""
+"""TeamSync FastAPI application entry point."""
 import os
 
 from fastapi import FastAPI
@@ -8,8 +8,8 @@ from app.database import Base, engine
 from app.routers import tasks, dashboard
 
 app = FastAPI(
-    title="InternSync API",
-    description="Backend API for the InternSync Internship Task Tracker",
+    title="TeamSync API",
+    description="Backend API for the TeamSync Team Task Tracker",
     version="1.0.0",
 )
 
