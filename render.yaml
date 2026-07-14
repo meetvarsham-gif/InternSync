@@ -7,12 +7,11 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/health
-    disk:
-      name: internsync-data
-      mountPath: /var/data
-      sizeGB: 1
     envVars:
+      # Set this to a Postgres connection string (e.g. from Neon.tech's free tier).
+      # Render's free web services don't support persistent disks, so SQLite's
+      # file would reset on every restart -- Postgres keeps data across deploys.
       - key: DATABASE_URL
-        value: sqlite:////var/data/internsync.db
+        sync: false
       - key: ALLOWED_ORIGINS
         sync: false

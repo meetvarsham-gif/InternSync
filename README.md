@@ -32,11 +32,17 @@ The Vite dev server runs on `http://127.0.0.1:5173` and proxies `/api` requests 
 
 ## Deploying
 
-**Backend → Render.** This repo includes a `render.yaml` blueprint: on Render, choose "New > Blueprint", point it at this GitHub repo, and Render provisions a free web service with a 1GB persistent disk mounted at `/var/data` (so the SQLite file survives restarts/deploys). After the first deploy, set the `ALLOWED_ORIGINS` env var on the service to your Vercel frontend URL (comma-separated if you need more than one), e.g. `https://internsync.vercel.app`.
+Render's free web services don't support persistent disks, so SQLite isn't viable there (data would reset on every restart). The deployed backend uses Postgres instead — locally, SQLite is still the default via `DATABASE_URL`.
+
+**Database → Neon (free Postgres).** Create a free project at [neon.tech](https://neon.tech), then copy the connection string (starts with `postgresql://...`, includes `?sslmode=require`).
+
+**Backend → Render.** This repo includes a `render.yaml` blueprint: on Render, choose "New > Blueprint", point it at this GitHub repo. Render provisions a free web service; it will prompt you for two env vars since they're marked `sync: false`:
+- `DATABASE_URL` — the Neon connection string from above
+- `ALLOWED_ORIGINS` — your Vercel frontend URL (comma-separated if more than one), e.g. `https://internsync.vercel.app`
 
 **Frontend → Vercel.** Import this repo as a Vercel project with root directory `frontend` (framework preset: Vite). Set the `VITE_API_BASE_URL` env var to your Render backend's URL plus `/api`, e.g. `https://internsync-api.onrender.com/api`, then deploy. `vercel.json` handles SPA client-side routing rewrites.
 
-Note: the free tiers on both platforms spin down on inactivity, so the first request after idling can take ~30-60s to wake up.
+Note: Render's free tier spins down on inactivity, so the first request after idling can take ~30-60s to wake up.
 
 ## Project layout
 
